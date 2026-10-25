@@ -1,14 +1,5 @@
 # Changelog
 
-## Unreleased
-
-- When the tag is off (turned off, outside production by default, or no site id), `tag()` with
-  `queue_stub = true` now prints the queue stub alone, so `privatus.track` calls never fail. It
-  prints no tracker and no page props, and does not call a props function. With `queue_stub`
-  off it still prints nothing. `inject`, the HTTP.jl middleware and Genie auto inject still add
-  nothing when the tag is off.
-- `example/`: an HTTP.jl app for the conformance tests.
-
 ## 1.0.0 - 2026-10-25
 
 - Initial release.
@@ -26,3 +17,9 @@
 - Genie extension: `privatus_analytics_tag()`, `privatus_event_data`, `privatus_click_data`,
   and `auto_inject = true` to add the tag to every HTML page.
 - HTTP.jl extension: `PrivatusAnalytics.middleware(handler)` adds the tag to HTML responses.
+- When the tag is off (turned off, outside production by default, or no site id), `tag()` with
+  `queue_stub = true` now prints the queue stub alone, so `privatus.track` calls never fail. It
+  prints no tracker and no page props, and does not call a props function. With `queue_stub`
+  off it still prints nothing. `inject`, the HTTP.jl middleware and Genie auto inject still add
+  nothing when the tag is off.
+- `example/`: an HTTP.jl app for the conformance tests.
