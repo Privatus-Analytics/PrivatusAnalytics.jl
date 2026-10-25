@@ -1,0 +1,30 @@
+name = "PrivatusAnalytics"
+uuid = "af638a9a-6bce-4381-8b88-11a7bbc7d4ea"
+authors = ["Two Phase LLC <james@privatusanalytics.com>"]
+version = "1.0.0"
+
+[weakdeps]
+Genie = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+
+[extensions]
+PrivatusAnalyticsGenieExt = "Genie"
+PrivatusAnalyticsHTTPExt = "HTTP"
+
+[compat]
+Aqua = "0.8"
+Genie = "5, 6"
+HTTP = "1, 2"
+Sockets = "1"
+Test = "1"
+julia = "1.9"
+
+[extras]
+Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
+Genie = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+Sockets = "6462fe0b-24de-5631-8697-dd941f90decc"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Aqua", "Genie", "HTTP", "Sockets", "Test"]

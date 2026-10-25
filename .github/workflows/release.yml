@@ -1,0 +1,28 @@
+name: Release
+
+# Releases go through the General registry: comment "@JuliaRegistrator register" on a commit.
+# TagBot then makes the v* tag. This workflow checks the tagged code. It publishes nothing.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: "1.11"
+      - name: Tag matches Project.toml version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          version=$(grep -m1 '^version' Project.toml | cut -d'"' -f2)
+          test "v$version" = "${GITHUB_REF_NAME}" || { echo "Tag ${GITHUB_REF_NAME} does not match version $version"; exit 1; }
+      - uses: julia-actions/julia-buildpkg@v1
+      - uses: julia-actions/julia-runtest@v1

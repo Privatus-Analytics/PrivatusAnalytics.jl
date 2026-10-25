@@ -1,0 +1,6 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+PrivatusAnalytics = "af638a9a-6bce-4381-8b88-11a7bbc7d4ea"
+
+[compat]
+Documenter = "1.13"
