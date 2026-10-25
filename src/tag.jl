@@ -40,7 +40,8 @@ PrivatusAnalytics.tag()
 # <script defer src="https://privatusstats.com/js/pa.js" data-site="pa_YOURSITEID"></script>
 ```
 
-Prints nothing without a site id, or when the tag is not enabled (see [`isenabled`](@ref)).
+Without a site id, or when the tag is not enabled (see [`isenabled`](@ref)), prints only
+the queue stub when `queue_stub` is on, and otherwise nothing.
 
   - Any setting of [`Configuration`](@ref) can be changed for this call, for example
     `tag(modules = ["engage", "auto"], nonce = "abc")`.
@@ -49,9 +50,14 @@ Prints nothing without a site id, or when the tag is not enabled (see [`isenable
 """
 function tag(config::Configuration=configuration(); request=nothing, props=nothing, overrides...)
     config = isempty(overrides) ? config : with_overrides(config; overrides...)
-    render(config) || return SafeHTML("")
-
     nonce = resolve_nonce(config.nonce, request)
+    # Off: only the queue stub (when it is on), so `privatus.track` calls in your own
+    # JavaScript wait in the queue and never fail. No tracker, no page props, and a props
+    # function is not called.
+    if !render(config)
+        return SafeHTML(config.queue_stub ? inline_script(QUEUE_STUB, nonce) : "")
+    end
+
     props_json = page_props_json(merged_props(config, request, props))
     html = String[]
     config.queue_stub && push!(html, inline_script(QUEUE_STUB, nonce))

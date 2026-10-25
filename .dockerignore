@@ -1,0 +1,5 @@
+.git
+.github
+docs/build
+Manifest.toml
+**/Manifest*.toml

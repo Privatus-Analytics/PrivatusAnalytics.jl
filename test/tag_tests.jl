@@ -160,4 +160,35 @@
         @test event_attrs("Saved") == "data-privatus-event=\"Saved\""
         @test click_attr("a.b") == "data-privatus-click=\"a.b\""
     end
+
+    @testset "when the tag is off" begin
+        @testset "queue stub on prints only the stub, with the nonce" begin
+            configure(enabled=false, queue_stub=true, props=_ -> error("should not run"))
+            @test PA.tag(; nonce="abc", props=(plan="pro",)) ==
+                "<script nonce=\"abc\">$(PA.QUEUE_STUB)</script>"
+            @test PA.tag() isa PA.SafeHTML
+        end
+
+        @testset "queue stub on without a nonce prints the bare stub" begin
+            configure()
+            @test PA.tag(; enabled=false, queue_stub=true, props=(plan="pro",)) ==
+                "<script>$(PA.QUEUE_STUB)</script>"
+        end
+
+        @testset "queue stub off prints nothing" begin
+            configure()
+            @test PA.tag(; enabled=false, queue_stub=false, props=(plan="pro",)) == ""
+        end
+
+        @testset "no site id with the queue stub on prints only the stub" begin
+            configure(site_id=nothing, queue_stub=true)
+            @test PA.tag(; nonce="n", props=(plan="pro",)) ==
+                "<script nonce=\"n\">$(PA.QUEUE_STUB)</script>"
+        end
+
+        @testset "outside production with the queue stub on prints only the stub" begin
+            configure(enabled=nothing, queue_stub=true)
+            @test PA.tag() == "<script>$(PA.QUEUE_STUB)</script>"
+        end
+    end
 end

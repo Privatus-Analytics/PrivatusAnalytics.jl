@@ -5,7 +5,7 @@ const MARKER = "/js/pa.js"
     inject(html, config = configuration(); request = nothing, overrides...) -> String
 
 Puts the tag just before `</head>`. Leaves the page alone when it already has the tag, has no
-`</head>`, or when the tag prints nothing. Takes the same keywords as [`tag`](@ref).
+`</head>`, or when the tag is off. Takes the same keywords as [`tag`](@ref).
 
 Handy for static pages too, for example after a Franklin or Documenter build.
 """
@@ -14,7 +14,10 @@ function inject(
 )
     html = String(html)
     (occursin(MARKER, html) || !occursin(HEAD_CLOSE, html)) && return html
-    snippet = tag(config; request, overrides...)
+    config = isempty(overrides) ? config : with_overrides(config; overrides...)
+    # When the tag is off, add nothing (not even the queue stub).
+    render(config) || return html
+    snippet = tag(config; request)
     isempty(snippet) && return html
     return replace(html, HEAD_CLOSE => string(snippet, "\n</head>"); count=1)
 end

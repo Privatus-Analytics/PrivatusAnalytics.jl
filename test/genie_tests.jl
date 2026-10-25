@@ -58,5 +58,7 @@ using Genie.Renderer.Html: Html, @yield
         @test occursin("{\"path\":\"/privatus-page\"}", page)
         configure(auto_inject=true, enabled=false)
         @test !occursin("/js/pa.js", get_page())
+        configure(auto_inject=true, enabled=false, queue_stub=true)
+        @test !occursin("window.privatus", get_page())
     end
 end

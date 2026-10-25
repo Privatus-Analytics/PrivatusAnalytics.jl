@@ -15,6 +15,10 @@
         @test PA.inject("<p>no head</p>") == "<p>no head</p>"
         configure(enabled=false)
         @test PA.inject(PAGE) == PAGE
+        configure(enabled=false, queue_stub=true)
+        @test PA.inject(PAGE) == PAGE
+        configure(queue_stub=true)
+        @test PA.inject(PAGE; enabled=false) == PAGE
     end
 
     @testset "takes per call options" begin
