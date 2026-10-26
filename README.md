@@ -38,7 +38,7 @@ Sign up at https://privatusanalytics.com.
 
 ## Requirements
 
-* Julia 1.9 or later.
+* Julia 1.10 or later.
 * No other packages. The Genie and HTTP.jl parts switch on by themselves when
   you load Genie 5 or 6, or HTTP.jl 1 or 2 (Julia calls these "package
   extensions").

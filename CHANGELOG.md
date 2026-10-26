@@ -3,6 +3,7 @@
 ## 1.0.0 - 2026-10-25
 
 - Initial release.
+- Needs Julia 1.10 (the long-term support release) or later.
 - `PrivatusAnalytics.tag()` prints the tracker script tag, with settings for site id, script
   host, modules, excluded paths, domains, single-page app mode, manual mode, extra attributes
   and a Content Security Policy nonce. Any setting can be changed for one call.
