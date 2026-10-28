@@ -14,6 +14,8 @@ makedocs(;
         edit_link="main",
         assets=isempty(privatus) ? [] : [RawHTMLHeadContent(privatus)],
     ),
-    pages=["Home" => "index.md", "Reference" => "reference.md"],
+    pages=["Home" => "index.md", "Guide" => "guide.md", "Reference" => "reference.md"],
     remotes=nothing,
 )
+
+deploydocs(; repo="github.com/Privatus-Analytics/PrivatusAnalytics.jl.git", devbranch="main")

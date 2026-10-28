@@ -1,5 +1,10 @@
 # Privatus Analytics for Julia
 
+[![Docs (stable)](https://img.shields.io/badge/docs-stable-blue.svg)](https://privatus-analytics.github.io/PrivatusAnalytics.jl/stable/)
+[![Docs (dev)](https://img.shields.io/badge/docs-dev-blue.svg)](https://privatus-analytics.github.io/PrivatusAnalytics.jl/dev/)
+[![CI](https://github.com/Privatus-Analytics/PrivatusAnalytics.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/Privatus-Analytics/PrivatusAnalytics.jl/actions/workflows/ci.yml)
+[![Coverage](https://codecov.io/gh/Privatus-Analytics/PrivatusAnalytics.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/Privatus-Analytics/PrivatusAnalytics.jl)
+
 **Real visitor numbers for your Julia web app or site. No cookies, no cookie pop-up, no bots.**
 
 You want to know if people use your Julia web app or site. But Google Analytics
@@ -44,6 +49,11 @@ Sign up at https://privatusanalytics.com.
   extensions").
 * A Privatus Analytics site id (it starts with `pa_`). You find it under
   Site settings, Tracking.
+
+## Documentation
+
+The full documentation is at
+[privatus-analytics.github.io/PrivatusAnalytics.jl](https://privatus-analytics.github.io/PrivatusAnalytics.jl/stable/).
 
 ## Install
 

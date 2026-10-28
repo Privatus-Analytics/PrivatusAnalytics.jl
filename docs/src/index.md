@@ -23,7 +23,7 @@ click_attr("pricing.cta")
 The tag prints only in production: when `ENV["GENIE_ENV"] == "prod"`,
 `ENV["PRIVATUS_ENV"] == "production"`, or when you set `enabled = true`.
 
-The README on [GitHub](https://github.com/Privatus-Analytics/PrivatusAnalytics.jl) has the
-full guide. The tracker itself is described in the
+The [Guide](guide.md) covers setup for each framework, configuration and product
+analytics. The [Reference](reference.md) lists every exported function. The tracker itself is described in the
 [Privatus Analytics docs](https://privatusanalytics.com/docs) and the
 [script attributes reference](https://privatusanalytics.com/docs/tracker/attributes).
